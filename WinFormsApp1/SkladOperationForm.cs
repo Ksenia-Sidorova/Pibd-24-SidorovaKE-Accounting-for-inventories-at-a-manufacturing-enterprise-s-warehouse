@@ -27,10 +27,14 @@ namespace WinFormsApp1
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Для операций мы просто добавим тестовую запись (по заданию кнопка "Добавить" есть)
-            var operation = SkladOperation.Create(1, OperationType.Income, 10, DateTime.Now);
-            _operationRepository.Add(operation);
-            LoadData();
+            using (var addForm = new SkladOperationEditForm())
+            {
+                if (addForm.ShowDialog() == DialogResult.OK)
+                {
+                    _operationRepository.Add(addForm.CreatedOperation);
+                    LoadData();
+                }
+            }
         }
     }
 }

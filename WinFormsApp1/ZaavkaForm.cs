@@ -27,10 +27,14 @@ namespace WinFormsApp1
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // Создаем тестовую заявку (в реальной программе тут была бы форма ввода)
-            var request = ZaavkaNaZakupky.Create(1, 50);
-            _repository.Add(request);
-            LoadData();
+            using (var addForm = new ZaavkaEditForm())
+            {
+                if (addForm.ShowDialog() == DialogResult.OK)
+                {
+                    _repository.Add(addForm.CreatedRequest);
+                    LoadData();
+                }
+            }
         }
     }
 }

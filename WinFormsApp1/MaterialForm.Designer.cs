@@ -41,7 +41,7 @@
             GridMaterials.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             GridMaterials.Location = new Point(3, 2);
             GridMaterials.Name = "GridMaterials";
-            GridMaterials.Size = new Size(750, 352);
+            GridMaterials.Size = new Size(898, 352);
             GridMaterials.TabIndex = 0;
             // 
             // btnAdd
@@ -78,7 +78,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(913, 450);
             Controls.Add(btnDelete);
             Controls.Add(btnEdit);
             Controls.Add(btnAdd);

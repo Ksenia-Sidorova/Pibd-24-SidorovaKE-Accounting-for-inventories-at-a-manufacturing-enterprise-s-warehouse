@@ -1,5 +1,6 @@
 ﻿
 using System;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormsApp1
 {
@@ -27,6 +28,7 @@ namespace WinFormsApp1
                 Name = name,
                 UnitIzmereniya = unitIzmereniya,
                 MinOstatok = minOstatok,
+             
                 SkladQuantity = 0// при создании остаток на складе равен 0
             };
         }
@@ -35,6 +37,7 @@ namespace WinFormsApp1
         {
             if (quantity <= 0) throw new ArgumentException("Количество должно быть больше нуля");
             SkladQuantity += quantity;
+            
         }
 
         public void WriteOffStock(decimal quantity)
@@ -42,6 +45,7 @@ namespace WinFormsApp1
             if (quantity <= 0) throw new ArgumentException("Количество должно быть больше нуля");
             if (quantity > SkladQuantity) throw new InvalidOperationException("Недостаточно материала на складе");
             SkladQuantity -= quantity;
+           
         }
 
         public void UpdateInfo(string name, int unitIzmereniya, decimal minOstatok)
@@ -57,6 +61,25 @@ namespace WinFormsApp1
         public void SetId(int id)
         {
             ID = id;
+        }
+
+        public MaterialStatus CurrentStatus
+        {
+            get
+            {
+                MaterialStatus status = MaterialStatus.None;
+
+                if (SkladQuantity > 0)
+                    status |= MaterialStatus.InStock;
+
+                if (SkladQuantity <= MinOstatok)
+                    status |= MaterialStatus.Expected;
+
+                if (SkladQuantity == 0)
+                    status |= MaterialStatus.Defective;
+
+                return status;
+            }
         }
     }
 }
