@@ -9,6 +9,9 @@ namespace WinFormsApp1
 
         public void Add(Material material)
         {
+            if (material.ID == 0)
+                material.SetId(_materials.Count > 0 ? _materials.Max(m => m.ID) + 1 : 1);
+
             _materials.Add(material);
         }
 

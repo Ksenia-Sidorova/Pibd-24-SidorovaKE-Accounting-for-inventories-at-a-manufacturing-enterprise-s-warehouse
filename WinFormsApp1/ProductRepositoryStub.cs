@@ -9,6 +9,9 @@ namespace WinFormsApp1
 
         public void Add(Product product)
         {
+            if (product.ID == 0)
+                product.SetId(_products.Count > 0 ? _products.Max(p => p.ID) + 1 : 1);
+
             _products.Add(product);
         }
 
